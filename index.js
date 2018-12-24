@@ -1,6 +1,7 @@
 const express = require('express');
 const database = require("./config.js");
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 const users = require('./routes/api/users');
 const profile = require('./routes/api/profile');
@@ -13,6 +14,10 @@ const url = `mongodb://${database.dbUser}:${database.dbPassword}@ds243054.mlab.c
 mongoose.connect(url, { useNewUrlParser: true })
     .then(() => console.log('DB Connected'))
     .catch(err => console.log(err))
+
+// body parser
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json())
 
 app.get('/', (req, res) => res.send("running"));
 
