@@ -14,11 +14,11 @@ const app = express();
 const url = `mongodb://${database.dbUser}:${database.dbPassword}@ds243054.mlab.com:43054/web-connect`;
 mongoose.connect(url, { useNewUrlParser: true })
     .then(() => console.log('DB Connected'))
-    .catch(err => console.log(err))
+    .catch(err => console.log(err));
 
 // body parser
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 app.get('/', (req, res) => res.send("running"));
 

@@ -10,9 +10,9 @@ const passport = require('passport');
 const User = require('../../models/User');
 
 // /api/users
-router.get('/test', (req, res) => {
-    res.json({msg: 'test'});
-});
+// router.get('/test', (req, res) => {
+//     res.json({msg: 'test'});
+// });
 
 router.post('/register', (req, res) => {
     User.findOne({email: req.body.email})
@@ -54,7 +54,7 @@ router.post('/login', (req, res) => {
         .then(userMatch => {
             if(userMatch){
                 const payload = { id: user.id, name: user.name, avatar: user.avatar }
-                jwt.sign(payload, key.secretOrKey, { expiresIn: 3600 }, (err, token) => {
+                jwt.sign(payload, key.secretOrKey, { expiresIn: 360000 }, (err, token) => {
                     res.json({
                         success: true,
                         token: "Bearer " + token
